@@ -1,0 +1,18 @@
+include: package:lint/strict.yaml
+
+analyzer:
+  exclude:
+    - '**.freezed.dart'
+    - '**.g.dart'
+
+linter:
+  rules:
+    unawaited_futures: true
+    public_member_api_docs: false
+    prefer_single_quotes: false
+    lines_longer_than_80_chars: false
+    use_to_and_as_if_applicable: true
+    prefer_const_literals_to_create_immutables: false
+    sort_pub_dependencies: false
+    prefer_if_elements_to_conditional_expressions: false
+    avoid_classes_with_only_static_members: false
