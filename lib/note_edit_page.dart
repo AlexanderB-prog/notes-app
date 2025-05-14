@@ -62,6 +62,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Expanded(
+              flex: 2,
               child: TextFormField(
                 initialValue: content,
                 maxLines: 10,
@@ -129,7 +130,7 @@ class _NoteEditPageState extends State<NoteEditPage> {
                 ],
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).viewInsets.bottom + 16),
+            SizedBox(height: MediaQuery.of(context).viewPadding.bottom),
           ],
         ),
       ),
