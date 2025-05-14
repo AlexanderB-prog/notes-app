@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/repository/shared_pref_repository/shared_pref_repository.dart';
 
 part 'theme_event.dart';
@@ -11,7 +11,9 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   }
 
   Future<void> _onThemeChanged(
-      ThemeChangedEvent event, Emitter<ThemeState> emit) async {
+    ThemeChangedEvent event,
+    Emitter<ThemeState> emit,
+  ) async {
     await SharedPreferencesStorage.setTheme(event.themeMode);
     emit(ThemeState(themeMode: event.themeMode));
   }
