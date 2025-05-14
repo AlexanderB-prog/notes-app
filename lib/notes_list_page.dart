@@ -170,27 +170,53 @@ class NoteItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    note.title,
-                    style: const TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          note.title,
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      Text(
+                        DateFormat('HH:mm dd.MM').format(note.createdAt),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelSmall
+                            ?.apply(fontSizeFactor: 0.8),
+                      ),
+                    ],
                   ),
-                  if (note.content.isNotEmpty) const SizedBox(height: 8.0),
-                  if (note.content.isNotEmpty)
-                    Text(
-                      note.content,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
                   const SizedBox(height: 8.0),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                      DateFormat('HH:mm dd.MM.yy').format(note.createdAt),
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          note.content,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      InkWell(
+                        onTap: () {
+                          context.read<NotesBloc>().add(DeleteNoteEvent(note));
+                        },
+                        child: const Icon(
+                          Icons.delete,
+                          size: 15,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
